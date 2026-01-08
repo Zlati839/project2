@@ -18,11 +18,11 @@ def load_model():
           from sklearn.datasets import load_digits
           from sklearn.neural_network import MLPClassifier
           from sklearn.model_selection import train_test_split
-          digits load_digits()
+          digits = load_digits()
           X = digits.images.reshape((len(digits.images), -1)) / 16.0
           Y = digits.target
           X_train, _,y_train, = train_test_split(X, y, test_size=0.2, random_state=42)
-          model MLPClassifier(
+          model = MLPClassifier(
              hidden_layer_sizes=(100,),
              max_iter=100,
              random_state=42
@@ -32,7 +32,7 @@ def load_model():
 except Exception as e:
       st.error(f"Model loading error: {e}")
       return None
- model load_model()
+ model = load_model()
  if model is None:
     st.warning("Could not load model. Using fallback recognition.")
  else:
@@ -44,15 +44,15 @@ except Exception as e:
    
 try:
 #
-   img_gray image.convert('L')
-   img_resized img_gray.resize((8, 8))
+   img_gray = image.convert('L')
+   img_resized = img_gray.resize((8, 8))
    img_array = np.array(img_resized)
    if np.mean(img_array) > 128:
        img_array 255 img_array
-   img_array img_array / 16.0
-   img_flat img_array.flatten().reshape (1, -1)
+   img_array = img_array / 16.0
+   img_flat = img_array.flatten().reshape (1, -1)
    if model is not None:
-         prediction model.predict(img_flat) [0]
+         prediction = model.predict(img_flat) [0]
          st.write(f"## Prediction: **{prediction}**")
          probs = model.predict_proba(img_flat) [0]
          st.write("### Probabilities:")
