@@ -14,7 +14,7 @@ st.write("Upload a handwritten digit image and AI will try to recognize it.")
 
 @st.cache_resource
 def load_model():
-try:
+      try:
           from sklearn.datasets import load_digits
           from sklearn.neural_network import MLPClassifier
           from sklearn.model_selection import train_test_split
